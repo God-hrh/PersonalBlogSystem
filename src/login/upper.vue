@@ -1,65 +1,112 @@
 <template>
   <div class="body">
-      <div class="top-nav"> 
+    <form action="#" method="get">
+      <div class="top-nav">
         <div class="login"> <i class="iconfont icon-denglu"></i> 登陆</div>
         <div class="register"> 注册</div>
       </div>
       <div class="low">
         <br>
-        <input type="text" placeholder=" 手机/邮箱/个人域名" class="username"> <br>
-        <input type="text" placeholder=" 请输入密码" class="username"> <br>
-        <input type="checkbox" name="" id="checkbox">记住我
+        <input
+          type="text"
+          placeholder=" 手机/邮箱/个人域名"
+          class="username"
+          name="name"
+          ref="name"
+        > <br>
+        <input
+          type="text"
+          placeholder=" 请输入密码"
+          class="username"
+          name="psw"
+        > <br>
+        <input
+          type="checkbox"
+          name=""
+          id="checkbox"
+        >记住我
         <a href="">忘记密码</a><br>
-        <input type="button" value="登  陆" class="submit">
+        <input
+          type="submit"
+          value="登  陆"
+          class="submit"
+          v-on:click="submit"
+        >
       </div>
+
+    </form>
+
   </div>
 </template>
 
 <script>
 export default {
+    data:function(){
+return{
+  user:{}
 }
+  },
+  mounted:function(){
+    fetch("user/add", {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify({
+    name:"小明",
+    pwd:"123"
+  }), // data can be `string` or {object}!
+  headers: new Headers({
+    'Content-Type': 'application/json'
+  })
+}).then(res => res.json())
+// .catch(error => console.error('Error:', error))
+.then(response => this.user = response);
+  },
+  method:{
+    submit:function(){
+       alert(1);
+      alert(this.$refs.name.value);
+    }
+  }
+};
 </script>
 
 <style scoped>
-.body{
+.body {
   height: 50%;
   width: 100%;
-  
+
   text-align: center;
 }
-.login{
+.login {
   float: left;
   margin-left: 40px;
-  
- 
 }
-.submit{
-    width: 270px;
+.submit {
+  width: 270px;
   height: 30px;
   font-size: 15px;
   color: white;
   background-color: rgb(243, 180, 64);
 }
-.login > .iconfont{
+.login > .iconfont {
   font-size: 20px;
   line-height: 20px;
 }
-.register{
+.register {
   margin-top: 10px;
   margin-left: 350px;
   color: rgba(250, 184, 3, 0.795);
 }
-a{
+a {
   text-decoration: none;
 }
-.low{
+.low {
   margin-left: 20px;
 }
-input{
+input {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.username{
+.username {
   width: 270px;
   height: 30px;
   background: rgb(250, 247, 247);

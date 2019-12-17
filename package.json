@@ -2,13 +2,24 @@
   "name": "boke1.vue",
   "version": "0.1.0",
   "private": true,
+  "main": "src/server.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve ",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "nodemon src/server.js"
   },
+  "license": "ISC",
   "dependencies": {
+    "chromedriver": "^78.0.1",
     "core-js": "^3.4.3",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.3",
+    "koa-static": "^5.0.0",
+    "nodemailer": "^6.4.0",
+    "svg-captcha": "^1.4.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -18,6 +29,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "nodemon": "^2.0.2",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

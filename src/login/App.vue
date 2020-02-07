@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <h1>{{user}}</h1> -->
     <top></top>
     <lower></lower>
   </div>
@@ -20,11 +19,11 @@ return{
     top,lower
   },
   mounted:function(){
-    fetch("/user/getuser").then(function(response){
-      return response.json();
-    }).then((data)=>{
-      this.user = data;
-    })
+    // fetch("/users/getuser").then(function(response){
+    //   return response.json();
+    // }).then((data)=>{
+    //   this.user = data;
+    // })
   }
 }
 </script>

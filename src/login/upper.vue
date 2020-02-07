@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <form action="#" method="get">
+   <form action="http://localhost:3000/users/add" method="get">
       <div class="top-nav">
         <div class="login"> <i class="iconfont icon-denglu"></i> 登陆</div>
         <div class="register"> 注册</div>
@@ -19,6 +19,7 @@
           placeholder=" 请输入密码"
           class="username"
           name="psw"
+          ref="psw"
         > <br>
         <input
           type="checkbox"
@@ -33,38 +34,27 @@
           v-on:click="submit"
         >
       </div>
-
-    </form>
-
+      </form>
   </div>
 </template>
 
 <script>
 export default {
-    data:function(){
-return{
-  user:{}
-}
+  data: function() {
+    return {
+     
+    };
   },
+  
   mounted:function(){
-    fetch("user/add", {
-  method: 'POST', // or 'PUT'
-  body: JSON.stringify({
-    name:"小明",
-    pwd:"123"
-  }), // data can be `string` or {object}!
-  headers: new Headers({
-    'Content-Type': 'application/json'
-  })
-}).then(res => res.json())
-// .catch(error => console.error('Error:', error))
-.then(response => this.user = response);
+    // fetch("/user/add").then(function(response){
+    //   return response.json();
+    // }).then (function(data){
+    //   alert(data)
+    // })
   },
-  method:{
-    submit:function(){
-       alert(1);
-      alert(this.$refs.name.value);
-    }
+  methods: {
+    submit: function() {}
   }
 };
 </script>

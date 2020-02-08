@@ -1,12 +1,13 @@
 const email = require("../lib/Email");
 module.exports=(router)=>{
-    router.get("/sendmail",async ctx=>{
-        const emailcode = Math.random().toFixed(3).slice(3);
-        const a = email.send("2237202251@qq.com","验证码",{emailcode});
+    router.get("/sendmail",async ctx =>{
+        const emailcode = Math.random().toFixed(4).slice(-4);
         ctx.session.email = emailcode;
+        let {adress} = ctx.request.query;
+        const a = email.send(`${adress}`,"验证码",`${emailcode}`);
         ctx.body = "发送验证码！";
     })
-    router.get("/getmail",cyx=>{
+    router.get("/getmail",ctx=>{
         const {email} = ctx.session;
         const {mail} = ctx.request.query;
         if(email===mail){

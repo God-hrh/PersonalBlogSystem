@@ -2,11 +2,12 @@ let captcha = require("svg-captcha")
 module.exports=(router)=>{
     router.get("/captcha",ctx=>{
         let c = captcha.create({
-            size:1
+            size:4
         });
         //验证的时候只需要输入验证码的小写字母
         ctx.session.captcha = c.text.toLowerCase();
-        ctx.response.type="svg+xml";
+        console.log("图片验证码："+ctx.session.captcha);
+        ctx.response.type="image/svg+xml";
         ctx.body = c.data;
     })
     router.get("/getcaptcha",ctx=>{

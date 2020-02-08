@@ -12,12 +12,12 @@ let transporter = nodemailer.createTransport({
 module.exports = {
     send: async (to, subject, text) => {
         //发送email
-        let info = await transporter.sendMail({
+        let info = {
             from: "2237202251@qq.com",
             to: to,
             subject: subject,
             text: text
-        })
+        }
         const result = await transporter.sendMail(info);
         return result;
     }

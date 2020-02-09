@@ -7,7 +7,7 @@
     </div>
     <form
       action="http://localhost:3000/users/signup"
-      method="get"
+      method="post"
     >
       <div class="body">
         邮箱 <input

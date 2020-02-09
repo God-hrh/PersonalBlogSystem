@@ -1,19 +1,24 @@
 const mysql = require("promise-mysql");
-const pool = mysql.createPool({
-    host: "rm-bp1s8wez9j4hw42oemo.mysql.rds.aliyuncs.com",
+let pool;
+async function initPool(){
+    pool = await mysql.createPool({
+    host: "bp1s8wez9j4hw42oemo.mysql.rds.aliyuncs.com",
     port: 3306,
-    user: "t001",
-    password: "Bmatch123",
-    database: "t001"
-});
+    user: "dizi",
+    password: "Dizi1234",
+    database: "dizi-01"
+    })
+}
+initPool();
+
 module.exports = {
-    query: async (sql, data) => {
+    query: async (sql) => {
         try {
-            const result = await pool.query(sql, data);
+            const result = await pool.query(sql);
             return result;
         } catch (error) {
             console.error(error);
         }
-        return null;
+       return null;
     }
-};
+}

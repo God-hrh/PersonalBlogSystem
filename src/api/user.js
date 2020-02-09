@@ -14,14 +14,15 @@ ctx.session.user={
 }
 ctx.body = "session 设置成功！";
 });
-router.get("/users/signup",ctx=>{
-    const {imagecode} = ctx.request.query;
-    const {emailcode} = ctx.request.query;
-    const {personadress} = ctx.request.query;
-    const {name} = ctx.request.query;
-    const {psw} = ctx.request.query;
+router.post("/users/signup",ctx=>{
+    const {imagecode} = ctx.request.body;
+    const {emailcode} = ctx.request.body;
+    const {personadress} = ctx.request.body;
+    const {name} = ctx.request.body;
+    const {psw} = ctx.request.body;
+    console.log("检测的时候："+ctx.session.youxiangyanzhengma)
     if(
-        imagecode===ctx.session.captcha&&emailcode===ctx.session.email){
+        imagecode===ctx.session.captcha&&emailcode===ctx.session.youxiangyanzhengma){
         ctx.body = "用户注册成功！";
         delete ctx.session.captcha;
         delete ctx.session.email;

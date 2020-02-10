@@ -11,9 +11,9 @@ async function initPool(){
 }
 initPool();
 module.exports = {
-    query: async (sql) => {
+    query: async (sql,data) => {
         try {
-            const result = await pool.query(sql);
+            const result = await pool.query(sql,data);
             return result;
         } catch (error) {
             console.error(error);

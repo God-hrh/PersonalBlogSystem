@@ -6,7 +6,7 @@
       <div class="login"> 已有账号？<a href="">登陆</a></div>
     </div>
     <form
-      action="http://localhost:3000/users/signup"
+      action="http://localhost:3000/api/demo/insert"
       method="post"
     >
       <div class="body">
@@ -26,7 +26,7 @@
           href=""
           @click="reloadCaptcha"
         ><img
-            src="http://localhost:3000/captcha"
+            src="/captcha"
             id="imgcode"
           ></a>
         <br>

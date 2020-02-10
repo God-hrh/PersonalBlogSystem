@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-   <form action="http://localhost:3000/users/login" method="get">
+   <form action="http://localhost:3000/api/demo/query" method="get">
       <div class="top-nav">
         <div class="login"> <i class="iconfont icon-denglu"></i> 登陆</div>
         <div class="register"> 注册</div>

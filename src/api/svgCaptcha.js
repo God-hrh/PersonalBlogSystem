@@ -13,6 +13,7 @@ module.exports=(router)=>{
     })
     router.get("/getcaptcha",ctx=>{
         const {captcha} = ctx.request.query;
+        console.log(ctx.session.captcha);
         if(captcha===ctx.session.captcha){
             ctx.body="验证成功！";
             delete ctx.session.captcha;

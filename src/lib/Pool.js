@@ -2,7 +2,7 @@ const mysql = require("promise-mysql");
 let pool;
 async function initPool(){
     pool = await mysql.createPool({
-    host: "bp1s8wez9j4hw42oemo.mysql.rds.aliyuncs.com",
+    host: "rm-bp1s8wez9j4hw42oemo.mysql.rds.aliyuncs.com",
     port: 3306,
     user: "dizi",
     password: "Dizi1234",
@@ -10,7 +10,6 @@ async function initPool(){
     })
 }
 initPool();
-
 module.exports = {
     query: async (sql) => {
         try {

@@ -22,7 +22,13 @@
           class="kuang"
           name="imagecode"
         >
-        <a href="" @click="reloadCaptcha"><img src="http://localhost:3000/captcha" id="imgcode"></a>
+        <a
+          href=""
+          @click="reloadCaptcha"
+        ><img
+            src="http://localhost:3000/captcha"
+            id="imgcode"
+          ></a>
         <br>
 
         邮箱验证 <input
@@ -36,7 +42,7 @@
           value="获取验证码"
           class="yanzhengma"
           @click="sendmail"
-        ><a href="">收不到邮件？</a><br>
+        /><a href="">收不到邮件？</a><br>
         姓名<input
           type="text"
           class="kuang"
@@ -77,12 +83,25 @@ export default {
   methods: {
     reloadCaptcha: function() {
       const imgcode = document.getElementById("imagecode");
-      imgcode.src = "http://localhost:3000/captcha?t="+(new Date()).getTime;
-      },
-    sendmail:function () {
+      imgcode.src = "/captcha?t=" + new Date().getTime;
+    },
+    sendmail: function() {
       const emailadress = document.getElementById("emailadress").value;
-      fetch("http://localhost:3000/sendmail?adress="+emailadress);
+      fetch("/sendmail?adress=" + emailadress)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(data => {
+          alert(data);
+        });
     }
+  },
+  mounted: function() {
+    //     fetch("http://localhost:3000/sendmail?adress="+emailadress).then(function(response){
+    //       return response.json();
+    //     } ).then((data)=>{
+    //       alert(data);
+    //  })
   }
 };
 </script>

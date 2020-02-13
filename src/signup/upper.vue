@@ -6,7 +6,7 @@
       <div class="login"> 已有账号？<a href="">登陆</a></div>
     </div>
     <form
-      action="http://localhost:3000/api/demo/insert"
+      action="http://localhost:3000/api/giteeuser/insert"
       method="post"
     >
       <div class="body">

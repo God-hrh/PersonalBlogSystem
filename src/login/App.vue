@@ -10,20 +10,8 @@
  import lower from "../login/lower"
 export default {
   name: 'app',
-  data:function(){
-return{
-  user:{}
-}
-  },
   components:{
     top,lower
-  },
-  mounted:function(){
-    // fetch("/users/getuser").then(function(response){
-    //   return response.json();
-    // }).then((data)=>{
-    //   this.user = data;
-    // })
   }
 }
 </script>

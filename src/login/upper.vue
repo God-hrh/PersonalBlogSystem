@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-   <form action="http://localhost:3000/api/demo/query" method="get">
+   <form action="http://localhost:3000/api/giteeuser/query" method="get">
       <div class="top-nav">
         <div class="login"> <i class="iconfont icon-denglu"></i> 登陆</div>
         <div class="register"> 注册</div>
@@ -31,7 +31,6 @@
           type="submit"
           value="登  陆"
           class="submit"
-          v-on:click="submit"
         >
       </div>
       </form>
@@ -52,9 +51,6 @@ export default {
     // }).then (function(data){
     //   alert(data)
     // })
-  },
-  methods: {
-    submit: function() {}
   }
 };
 </script>

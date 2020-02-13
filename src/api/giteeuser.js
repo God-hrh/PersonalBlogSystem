@@ -1,6 +1,6 @@
 const pool = require("../lib/pool");
 module.exports=(router)=>{
-    router.get("/api/demo/query",async ctx =>{
+    router.get("/api/giteeuser/query",async ctx =>{
         const {name} = ctx.request.query;
         const{psw} = ctx.request.query;
         const result = await pool.query(`select * from gitee_user where username = "${name}"and password = "${psw}"`);
@@ -10,12 +10,13 @@ module.exports=(router)=>{
                 name : name,
                 psw:psw 
             }
-            ctx.body = "用户登陆成功！";
-        }else{
+            // ctx.body = "用户登陆成功！"
+            ctx.response.redirect("http://localhost:8080/admin");
+            }else{
             ctx.body = "用户登陆失败！";
         }
     })
-    router.post("/api/demo/insert",async ctx=>{
+    router.post("/api/giteeuser/insert",async ctx=>{
         const {emailadress} = ctx.request.body;
         const {personadress} = ctx.request.body;
         const {psw} = ctx.request.body;
@@ -39,13 +40,13 @@ module.exports=(router)=>{
         
         
     })
-    router.post("/api/demo/delete",async ctx=>{
+    router.post("/api/giteeuser/delete",async ctx=>{
         const {id} = ctx.request.body;
         let sql = `delete from account where id = "${id}"`;
         const result = await pool.query(sql);
         ctx.body = JSON.stringify(result);
     })
-    router.post("/api/demo/update",async ctx=>{
+    router.post("/api/giteeuser/update",async ctx=>{
         const {recordType} = ctx.request.body;
         const {id} = ctx.request.body;
         // const {time} = ctx.request.body;

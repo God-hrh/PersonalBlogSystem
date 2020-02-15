@@ -97,11 +97,7 @@ export default {
     }
   },
   mounted: function() {
-    //     fetch("http://localhost:3000/sendmail?adress="+emailadress).then(function(response){
-    //       return response.json();
-    //     } ).then((data)=>{
-    //       alert(data);
-    //  })
+
   }
 };
 </script>

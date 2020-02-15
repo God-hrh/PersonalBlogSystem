@@ -7,13 +7,16 @@ Vue.use(VueRouter);
 
 import Leftcom from "./Leftcom.vue";
 import blogclass from "./blogclasscom/blogclass.vue";
-import BasicData from "./modifyPerDatacom/BasicData.vue";
-import Contactinfo from "./modifyPerDatacom/Contactinfo.vue";
-import ITSkill from "./modifyPerDatacom/ITSkill.vue";
-import title from "./modifyPerDatacom/title.vue"
+import title from "./modifyPerDatacom/title.vue";
+import modifypsw from "./modifyAccount/modifypsw.vue"
+import modifyemail from "./modifyAccount/modifyemail.vue"
+import homepage from "./modifyAccount/homepage.vue"
 const router = new VueRouter({
   routes: [
-    { path: "/main", components:{"Leftcom":Leftcom,"blogclass":blogclass,"BasicData":BasicData,"Contactinfo":Contactinfo,"ITSkill":ITSkill,"title":title} },
+    { path: "/main", components:{"Leftcom":Leftcom,"blogclass":blogclass,"title":title ,"modifypsw":modifypsw,
+          "modifyemail":modifyemail,"homepage":homepage
+  
+     } },
   ]
 })
 new Vue({

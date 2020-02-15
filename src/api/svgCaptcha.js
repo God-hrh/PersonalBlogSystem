@@ -3,6 +3,8 @@ module.exports=(router)=>{
     router.get("/captcha",ctx=>{
         let c = captcha.create({
             ignoreChars: '0o1ilLI',
+            height:"34",
+            width:"130",
             size:4
         });
         //验证的时候只需要输入验证码的小写字母

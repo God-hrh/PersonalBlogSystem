@@ -1,0 +1,46 @@
+.content {
+    border: 1px solid red;
+    margin-top: 95px;
+    height: 540px;
+    width: 830px;
+    position: absolute;
+    margin-left: 335px;
+  }
+  .head{
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 5px;
+      margin-bottom: 5px;
+  }
+  .remark{
+      font-size: 15px;
+      color: gray;
+  }
+  .content{
+      padding-left: 20px;
+  }
+  input{
+    height: 30px;
+    width: 300px;
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  .confirm{
+      width: 100px;
+      margin-top: 20px;
+    border: 1px solid black;
+ padding: 10px 0px 15px 0px; 
+ background: rgb(88, 167, 108);
+ color: white;
+ padding: 5px 10px;
+ border: none;
+ border-radius: 2px;
+ margin-right: 10px;
+}
+.cbox{
+    padding: 0px;
+    height: 15px;
+    width: 20px;
+    margin-top: 10px;
+}
+ 

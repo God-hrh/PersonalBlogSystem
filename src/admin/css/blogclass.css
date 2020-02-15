@@ -7,7 +7,7 @@
   }
   .current_location {
     border: 1px solid black;
-    margin-top: 20px;
+    
     height: 20px;
     width: 100%;
   }
@@ -40,8 +40,6 @@
       text-align: center;
   }
   .tab tr td button {
-      /* margin-right: 10px;
-      margin-left: 10px; */
       padding: 2px 10px;
       margin: 8px 8px;
   }

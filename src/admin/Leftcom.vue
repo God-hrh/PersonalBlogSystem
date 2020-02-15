@@ -1,6 +1,5 @@
 <template>
     <div class="Leftcom">
-
     <div
       class="level-one"
       v-show="obj.level==1"
@@ -22,7 +21,6 @@
       </div>
     </div>
   </div>
-
 </template>
 <script>
 import "./css/leftcom.css"
@@ -33,20 +31,15 @@ export default {
         let hash = window.location.hash||"";
         if(hash){
           hash = hash.substring(10);
-          
           if(id === hash){
             return "select";
           }
+        }else{
+          hash = "22";
         }
         return "";
       }
-  },
-  data: function() {
-    return {
-      
-    };
   }
-  
 };
 </script>
 <style scoped>

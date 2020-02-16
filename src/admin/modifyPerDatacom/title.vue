@@ -7,9 +7,9 @@
           v-for="item in title"
           :key="item.id"
         ><a
+            @click="selectNav"
             :href="`admin#/main?id=${item.id}`"
-            @click="isselect"
-          >{{item.title}}</a> </li>
+          > <span :class="isselect(item.id)">{{item.title}}</span> </a> </li>
       </ul>
     </div>
     <div class="upper">
@@ -32,28 +32,39 @@ import ITSkill from "./ITSkill";
 import basic from "./BasicData";
 export default {
   methods: {
-    isselect: function() {
-      let hash = window.location.hash || "";
-      if (hash) {
-        hash = hash.substring(10);
-        if (hash === "2020021402") {
+    selectNav:function(){
+      let {id} =this.$route.query||"";
+        // console.log(id);
+        if (id === "2020021402") {
           this.selectCon = true;
           this.selectITSkill = false;
           this.selectbasic = false;
         }
-        if (hash === "2020021403") {
+        if (id === "2020021403") {
           this.selectCon = false;
           this.selectITSkill = true;
           this.selectbasic = false;
         }
-        if (hash === "2020021401") {
+        if (id === "2020021401") {
           this.selectCon = false;
           this.selectITSkill = false;
           this.selectbasic = true;
         }
-      } else {
-        return (hash = "2020021401");
-      }
+    },
+    isselect:function(id){
+      let hash = window.location.hash;
+      if (hash!="#/main?id=10") {
+        hash = hash.substring(10);
+        if(id===hash){
+          return "selec"
+        }
+      }else{
+          hash = "2020021401"
+        }
+        if(id===hash){
+          return "selec"
+        }
+        return "";
     }
   },
   components: {
@@ -89,5 +100,8 @@ export default {
   position: absolute;
   top: -22px;
   left: -337px;
+}
+.selec{
+  color: rgb(88,167,108);
 }
 </style>

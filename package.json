@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@ckeditor/ckeditor5-build-decoupled-document": "^16.0.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "chromedriver": "^78.0.1",
     "core-js": "^3.4.3",
     "jquery": "^1.12.4",

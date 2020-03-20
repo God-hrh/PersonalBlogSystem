@@ -6,12 +6,16 @@ module.exports=(router)=>{
         const result = await pool.query(`select * from gitee_user where username = "${name}"and password = "${psw}"`);
         if(result !=""){
             //设置用户登陆session
+            const id = await pool.query(`select id from gitee_user where username = "${name}"`);
             ctx.session.user={
                 name : name,
-                psw:psw 
+                psw:psw,
+                id:id
             }
+            console.log(ctx.session.user.id);
             // ctx.body = "用户登陆成功！"
-            ctx.response.redirect("http://localhost:8080/admin");
+            //这里不能用response，带不了session
+            ctx.response.redirect("http://localhost:8080/admin#/main");
             }else{
             ctx.body = "用户登陆失败！";
         }
@@ -46,14 +50,9 @@ module.exports=(router)=>{
         const result = await pool.query(sql);
         ctx.body = JSON.stringify(result);
     })
-    router.post("/api/giteeuser/update",async ctx=>{
-        const {recordType} = ctx.request.body;
-        const {id} = ctx.request.body;
-        // const {time} = ctx.request.body;
-        // const {describe} = ctx.request.body;
-        // const {amount} = ctx.request.body;
-        let sql = `update account set record_type = "${recordType}" where id = "${id}"`;
-        const result = await pool.query(sql);
-        ctx.body = JSON.stringify(result);
-    })
+    // router.get("/api/giteeuser/updateperdata",async ctx=>{
+    //     const {id} = ctx.session.user;
+    //     const result = await pool.query(sql);
+    //     ctx.body = JSON.stringify(result);
+    // })
 }

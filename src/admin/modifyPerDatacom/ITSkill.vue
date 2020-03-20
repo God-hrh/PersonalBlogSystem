@@ -1,6 +1,6 @@
 <template>
   <div id="ITSkill">
-
+    <form @submit="submit">
     <div class="content">
       <div>
         <div
@@ -9,7 +9,7 @@
         >我是一名
           <div>
             <select
-              name=""
+             v-model="position"
               id=""
               class="sec"
             >
@@ -25,12 +25,13 @@
           </div>
         </div>
         <div
+       
           class="head"
           id="station2"
         >工作年限
           <div>
             <select
-              name=""
+              v-model="workyears"
               id=""
               class="sec workyears"
             >
@@ -50,19 +51,26 @@
       <input
         type="radio"
         class="cbox"
+        v-model="status"
+        value="在职"
       ><span>在职</span>
       <input
         type="radio"
         class="cbox"
+        value="学生"
+        v-model="status"
       ><span>学生</span>
       <input
         type="radio"
         class="cbox"
+        value="找工作中"
+        v-model="status"
       ><span>找工作中</span>
       <div class="head">工作单位</div>
       <input
         type="text"
         placeholder="请输入工作单位"
+        v-model="workadress"
       >
       <div class="head">熟悉的开发平台 <span>（最多选5个）</span></div>
       <div
@@ -70,11 +78,14 @@
         v-for="item in patlform"
         :key="item.id"
       >
+       <!-- 注意此时获取value值的写法 -->
         <input
           type="checkbox"
-          name="exploreplatform"
+          v-model="exploreplatform"
           class="cbox"
-        >{{item.subject}}
+          :value="`${item.subject}`"
+          :id="`${item.id}`"
+        > <label :for="`${item.id}`">{{item.subject}}</label> 
       </div>
       <div class="head">专长领域<span>（最多选3个）</span></div>
       <div>
@@ -85,9 +96,11 @@
         >
           <input
             type="checkbox"
-            name="strong"
+            v-model="skill"
             class="cbox"
-          >{{item.area}}
+            :value="`${item.area}`"
+            :id="`${item.id}`"
+          ><label :for="`${item.id}`">{{item.area}}</label> 
         </div>
       </div>
 
@@ -97,6 +110,7 @@
         value="保存修改"
       >
     </div>
+    </form>
   </div>
 </template>
 <script>
@@ -105,7 +119,13 @@ export default {
   data: function() {
     return {
       patlform: [],
-      strong: []
+      strong: [],
+      position:"",
+      workyears:"",
+      status:"",
+      workadress:"",
+      exploreplatform:[],
+      skill:[]
     };
   },
   mounted() {
@@ -119,6 +139,11 @@ export default {
         .then(ctx => {
           this.strong = ctx;
         });
+  },
+  methods:{
+    submit:function(){
+      fetch(`/userdatamodify/itskill?id=1&position=${this.position}&workyears=${this.workyears}&status=${this.status}&workadress=${this.workadress}&exploreplatform=${this.exploreplatform}&strong=${this.skill}`);
+    }
   }
 };
 </script>

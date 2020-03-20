@@ -7,8 +7,7 @@
           v-for="item in title"
           :key="item.id"
         ><a
-            @click="selectNav"
-            :href="`admin#/main?id=${item.id}`"
+            :href="'admin#/main?id='+item.id"
           > <span :class="isselect(item.id)">{{item.title}}</span> </a> </li>
       </ul>
     </div>
@@ -32,25 +31,6 @@ import ITSkill from "./ITSkill";
 import basic from "./BasicData";
 export default {
   methods: {
-    selectNav:function(){
-      let {id} =this.$route.query||"";
-        // console.log(id);
-        if (id === "2020021402") {
-          this.selectCon = true;
-          this.selectITSkill = false;
-          this.selectbasic = false;
-        }
-        if (id === "2020021403") {
-          this.selectCon = false;
-          this.selectITSkill = true;
-          this.selectbasic = false;
-        }
-        if (id === "2020021401") {
-          this.selectCon = false;
-          this.selectITSkill = false;
-          this.selectbasic = true;
-        }
-    },
     isselect:function(id){
       let hash = window.location.hash;
       if (hash!="#/main?id=10") {
@@ -71,6 +51,26 @@ export default {
     Con,
     ITSkill,
     basic
+  },
+  watch:{
+    $route(){
+         let {id} =this.$route.query||"";
+        if (id === "2020021402") {
+          this.selectCon = true;
+          this.selectITSkill = false;
+          this.selectbasic = false;
+        }
+        if (id === "2020021403") {
+          this.selectCon = false;
+          this.selectITSkill = true;
+          this.selectbasic = false;
+        }
+        if (id === "2020021401") {
+          this.selectCon = false;
+          this.selectITSkill = false;
+          this.selectbasic = true;
+        }
+    }
   },
   data: function() {
     return {

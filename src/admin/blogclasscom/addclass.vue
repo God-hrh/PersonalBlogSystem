@@ -1,42 +1,46 @@
 <template>
   <div class="addclass">
-    <div class="title"> <span>{{title}}</span> </div>
+    <form @submit="add">
+    <div class="title"> <span>添加分类</span> </div>
     <div class="content">
       <div class="classname"> <span>分类名称</span>
         <div>
           <input
             type="text"
             placeholder="请输入分类名称"
+            name="addblogname"
           >
         </div>
       </div>
       <div class="ordervalue"> <span>排序值</span>
         <div>
-          <input type="text">
+          <input type="text" name="ordervalue">
         </div>
       </div>
     </div>
     <div class="opt">
-      <button class="cancel" @click="confirm">取消</button>
-      <button class="yes">确定</button>
+      <button type="button" @click="cancle">取消</button>
+      <button class="yes" type="submit">确定</button>
     </div>
+    </form>
   </div>
 </template>
 <script>
 export default {
-    props:["title"],
-    methods:{
-      confirm:function(){
-        return "";
-      }
-    }
+   methods:{
+     add:function(){
+       fetch(`/api/blogclassify/insert?id=${this.modifyid}&ordervalue=${this.ordervalue}&addblogname=${this.addblogname}`);
+     },
+     cancle:function(){
+       this.$emit("cancle",false);
+     }
+   }
 };
 </script>
 <style scoped>
 .addclass {
   height: 300px;
   width: 300px;
-  border: 1px solid black;
   position: absolute;
   top: 150px;
   right: 360px;
@@ -46,15 +50,15 @@ export default {
   width: 280px;
   height: 60px;
   line-height: 100px;
-  border: 1px solid black;
   padding: 0px 0px 0px 20px;
   font-weight: bolder;
 }
 .content {
   width: 280px;
   height: 180px;
-  border: 1px solid black;
   padding: 0px 0px 0px 20px;
+  display: block;
+  margin: 0px;
 }
 .content span {
   font-size: 13px;
@@ -63,13 +67,13 @@ export default {
 .opt {
   width: 300px;
   height: 56px;
-  border: 1px solid black;
   text-align: right;
+  position: absolute;
+  bottom: 0px;
 }
 .classname,
 .ordervalue {
   height: 60px;
-  border: 1px solid black;
   margin-top: 15px;
 }
 input {

@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 module.exports = {
   pages: {
     signup: {
@@ -35,5 +36,14 @@ module.exports = {
     }
   },devServer: {
     proxy: "http://localhost:3000"
+  },  configureWebpack: {
+    //引入jquery
+    plugins: [
+      new webpack.ProvidePlugin({
+        $:"jquery",
+        jQuery:"jquery",
+        "windows.jQuery":"jquery"
+      })
+    ]
   },
 }

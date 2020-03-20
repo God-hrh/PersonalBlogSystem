@@ -7,7 +7,8 @@
           </div>
           <div class="head ">文章分类 ＋<br>
               <select name="" id="" class="classify">
-                  <option value="">工作日志</option>
+                  <option value="" disabled selected>请选择</option>
+                  <option :value="`${item.addblogname}`" v-for="item in articleclassify" :key="item.id">{{item.addblogname}}</option>
               </select>
           </div>
       </div>
@@ -19,13 +20,13 @@
     <div id="toolbar-container"></div>
     <!-- 编辑器容器 -->
     <div id="editor">
-      <p>This is the initial editor content.</p>
+       <p> This is the initial editor content.</p>
     </div>
     <!-- 系统分类 -->
     <div class="head">系统分类*
         <select name="" id="">
             <option value="" disabled selected>请选择</option>
-            <option value="军事">军事</option>
+            <option :value="`${item.con}`" v-for="item in systemclassify" :key="item.id">{{item.con}}</option>
         </select>
             <input type="checkbox" name="" id="" class="cbox original">原创
             <input type="checkbox" name="" id="" class="cbox">置顶
@@ -41,11 +42,20 @@ import CKEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 export default {
   data() {
     return {
-      editor: null //编辑器实例
+      editor: null, //编辑器实例
+      systemclassify:[],
+      articleclassify:[],
+      
     };
   },
   mounted() {
-    this.initCKEditor();
+    this.initCKEditor(),
+    fetch("/systemclassify.json").then(ctx=>ctx.json()).then(ctx=>{
+      this.systemclassify = ctx;
+    }),
+    fetch("/api/blogclassify/query").then(ctx=>ctx.json()).then(ctx=>{
+      this.articleclassify = ctx;
+    });
   },
   methods: {
     initCKEditor() {

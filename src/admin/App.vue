@@ -3,38 +3,37 @@
     <!-- 左边导航 -->
       <router-view
         name="Leftcom"
-        :class="{mask:mask}"
         :bar1=bar1
       ></router-view>
     <!-- 博客分类管理 -->
-    <div v-if=" selectblog===true &&selectmodify === false &&selectmodifypsw === false && selectmodifyemail===false && selecthomepage === false &&selectpublishblog==false &&selectdrafts==false">
+    <div v-if="isblog">
       <router-view name="blogclass"
-        @sonme="fatherme"
+       
         :class="{mask:mask}"
       ></router-view>
     </div>
     <!-- 修改个人资料 -->
-    <div v-if="selectblog===false && selectmodify === true  &&selectmodifypsw === false && selectmodifyemail===false && selecthomepage === false &&selectpublishblog==false &&selectdrafts==false">
+    <div v-if="ismodify">
       <router-view name="title"></router-view>
     </div>
     <!-- 修改登陆密码 -->
-    <div v-if="selectmodifypsw === true && selectmodifyemail===false && selecthomepage === false&& selectblog===false && selectmodify === false &&selectpublishblog==false &&selectdrafts==false">
+    <div v-if="ismodifupsw">
       <router-view name="modifypsw"></router-view>
     </div>
     <!-- 修改登陆邮箱 -->
-    <div v-if="selectmodifypsw === false && selectmodifyemail===true && selecthomepage === false&& selectblog===false && selectmodify === false &&selectpublishblog==false &&selectdrafts==false">
+    <div v-if="ismodifyemail">
       <router-view name="modifyemail"></router-view>
     </div> 
     <!-- 个人主页设置 -->
-    <div v-if="selectmodifypsw === false && selectmodifyemail===false && selecthomepage === true&& selectblog===false && selectmodify === false &&selectpublishblog==false &&selectdrafts==false">
+    <div v-if="ishomepage">
       <router-view name="homepage"></router-view>
     </div>
     <!-- 发表博客 -->
-    <div v-if="selectmodifypsw === false && selectmodifyemail===false && selecthomepage === false&& selectblog===false && selectmodify === false &&selectpublishblog==true &&selectdrafts==false">
+    <div v-if="ispublishblog">
       <router-view name="publishblog"></router-view>
     </div>
     <!-- 草稿箱 -->
-    <div v-if="selectmodifypsw === false && selectmodifyemail===false && selecthomepage === false&& selectblog===false && selectmodify === false &&selectpublishblog==false &&selectdrafts==true">
+    <div v-if="isdrafts">
       <router-view name="drafts"></router-view>
     </div>
   </div>
@@ -56,12 +55,31 @@ export default {
       selectdrafts:false
     };
   },
-  methods: {
-    fatherme: function(data) {
-      this.mask = data;
+  computed:{
+    isblog:function(){
+      return  this.selectblog===true &&this.selectmodify === false &&this.selectmodifypsw === false && this.selectmodifyemail===false && this.selecthomepage === false &&this.selectpublishblog==false &&this.selectdrafts==false
     },
-    selectNav: function() {
+    ismodify:function(){
+      return this.selectblog===false &&this.selectmodify === true &&this.selectmodifypsw === false && this.selectmodifyemail===false && this.selecthomepage === false &&this.selectpublishblog==false &&this.selectdrafts==false
+    },
+    ismodifupsw:function(){
+      return this.selectblog===false &&this.selectmodify === false &&this.selectmodifypsw === true && this.selectmodifyemail===false && this.selecthomepage === false &&this.selectpublishblog==false &&this.selectdrafts==false
+    },
+    ismodifyemail:function(){
+      return this.selectblog===false &&this.selectmodify === false &&this.selectmodifypsw === false && this.selectmodifyemail===true && this.selecthomepage === false &&this.selectpublishblog==false &&this.selectdrafts==false
+    },
+    ishomepage:function(){
+      return this.selectblog===false &&this.selectmodify === false &&this.selectmodifypsw === false && this.selectmodifyemail===false && this.selecthomepage === true &&this.selectpublishblog==false &&this.selectdrafts==false
+    },
+    ispublishblog:function(){
+      return this.selectblog===false &&this.selectmodify === false &&this.selectmodifypsw === false && this.selectmodifyemail===false && this.selecthomepage === false &&this.selectpublishblog==true &&this.selectdrafts==false
+    },
+    isdrafts:function(){
+      return this.selectblog===false &&this.selectmodify === false &&this.selectmodifypsw === false && this.selectmodifyemail===false && this.selecthomepage === false &&this.selectpublishblog==false &&this.selectdrafts==true
     }
+  },
+  methods: {
+   
   },
   mounted() {
     fetch("/bar1.json")
